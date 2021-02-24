@@ -48,14 +48,14 @@ process.TFileService = cms.Service("TFileService",
 #                              )
 
 process.demo = cms.EDAnalyzer('DemoAnalyzer',
-	                        verbose         = cms.untracked.bool(opts.debug),
-				sampleID	= cms.untracked.int32(opts.sampleID),
-				generatorInfo	= cms.InputTag("generator"),
-				genjets		= cms.untracked.InputTag("ak4GenJets", "", "SIM"),
-                                genparticles    = cms.untracked.InputTag("genParticles", "", "SIM"), #era SIM
-				pileupInfo	= cms.untracked.InputTag("slimmedAddPileupInfo"),
-				vertices	= cms.untracked.InputTag("g4SimHits", "", "SIM"),
-          			tracks		= cms.untracked.InputTag("g4SimHits", "", "SIM"),
+	                        verbose         	= cms.untracked.bool(opts.debug),
+				sampleID		= cms.untracked.int32(opts.sampleID),
+				GenEventInfoProduct 	= cms.InputTag("generator","","SIM"),
+				genjets			= cms.untracked.InputTag("slimmedGenJetsAK8", "", "PAT"),
+                                genparticles    	= cms.untracked.InputTag("prunedGenParticles", "", "PAT"), #era SIM
+				pileupInfo		= cms.untracked.InputTag("slimmedAddPileupInfo"),
+				vertices		= cms.untracked.InputTag("offlineSlimmedPrimaryVertices", "", "PAT"),
+          			tracks			= cms.untracked.InputTag("TriggerTracks", "", "PAT"),
          )
 
 process.p = cms.Path(process.demo)
